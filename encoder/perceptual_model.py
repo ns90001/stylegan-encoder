@@ -8,10 +8,10 @@ import bz2
 import PIL.Image
 from PIL import ImageFilter
 import numpy as np
-from keras.models import Model
-from keras.utils import get_file
-from keras.applications.vgg16 import VGG16, preprocess_input
-import keras.backend as K
+from tensorflow.keras.models import Model
+from tensorflow.keras.utils import get_file
+from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
+import tensorflow.keras.backend as K
 import traceback
 import dnnlib.tflib as tflib
 
@@ -47,7 +47,7 @@ def tf_custom_l1_loss(img1,img2):
   return tf.math.reduce_mean(tf.math.abs(img2-img1), axis=None)
 
 def tf_custom_logcosh_loss(img1,img2):
-  return tf.math.reduce_mean(tf.keras.losses.logcosh(img1,img2))
+  return tf.math.reduce_mean(tf.tensorflow.keras.losses.logcosh(img1,img2))
 
 def create_stub(batch_size):
     return tf.constant(0, dtype='float32', shape=(batch_size, 0))

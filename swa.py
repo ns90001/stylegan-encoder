@@ -1,6 +1,6 @@
 """
 Stochastic Weight Averaging: https://arxiv.org/abs/1803.05407
-See: https://github.com/kristpapadopoulos/keras-stochastic-weight-averaging
+See: https://github.com/kristpapadopoulos/tensorflow.keras-stochastic-weight-averaging
 """
 import os
 import glob

@@ -14,12 +14,12 @@ import config
 import dnnlib.tflib as tflib
 
 import tensorflow
-import keras.backend as K
+import tensorflow.keras.backend as K
 
 from efficientnet import EfficientNetB0, EfficientNetB1, EfficientNetB2, EfficientNetB3, preprocess_input
 
-from keras.layers import Input, LocallyConnected1D, Reshape, Permute, Conv2D, Add, Concatenate
-from keras.models import Model, load_model
+from tensorflow.keras.layers import Input, LocallyConnected1D, Reshape, Permute, Conv2D, Add, Concatenate
+from tensorflow.keras.models import Model, load_model
 
 """
 Truncation method from @oneiroid

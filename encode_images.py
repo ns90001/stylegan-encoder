@@ -10,9 +10,9 @@ import dnnlib.tflib as tflib
 import config
 from encoder.generator_model import Generator
 from encoder.perceptual_model import PerceptualModel, load_images
-#from tensorflow.keras.models import load_model
-from keras.models import load_model
-from keras.applications.resnet50 import preprocess_input
+#from tensorflow.tensorflow.keras.models import load_model
+from tensorflow.keras.models import load_model
+from tensorflow.keras.applications.resnet50 import preprocess_input
 
 def split_to_batches(l, n):
     for i in range(0, len(l), n):
@@ -148,7 +148,7 @@ def main():
         else:
             if (ff_model is None):
                 if os.path.exists(args.load_resnet):
-                    from keras.applications.resnet50 import preprocess_input
+                    from tensorflow.keras.applications.resnet50 import preprocess_input
                     print("Loading ResNet Model:")
                     ff_model = load_model(args.load_resnet)
             if (ff_model is None):

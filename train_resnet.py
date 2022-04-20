@@ -14,12 +14,12 @@ import config
 import dnnlib.tflib as tflib
 
 import tensorflow
-import keras
-import keras.backend as K
+import tensorflow.keras
+import tensorflow.keras.backend as K
 
-from keras.applications.resnet50 import preprocess_input
-from keras.layers import Input, LocallyConnected1D, Reshape, Permute, Conv2D, Add
-from keras.models import Model, load_model
+from tensorflow.keras.applications.resnet50 import preprocess_input
+from tensorflow.keras.layers import Input, LocallyConnected1D, Reshape, Permute, Conv2D, Add
+from tensorflow.keras.models import Model, load_model
 
 def generate_dataset_main(n=10000, save_path=None, seed=None, model_res=1024, image_size=256, minibatch_size=16, truncation=0.7):
     """
@@ -61,7 +61,7 @@ def generate_dataset_main(n=10000, save_path=None, seed=None, model_res=1024, im
     X = Gs.components.synthesis.run(W, randomize_noise=False, minibatch_size=minibatch_size, print_progress=True,
                                     output_transform=dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True))
     X = np.array([cv2.resize(x, (image_size, image_size), interpolation = cv2.INTER_AREA) for x in X])
-    #X = preprocess_input(X, backend = keras.backend, layers = keras.layers, models = keras.models, utils = keras.utils)
+    #X = preprocess_input(X, backend = tensorflow.keras.backend, layers = tensorflow.keras.layers, models = tensorflow.keras.models, utils = tensorflow.keras.utils)
     X = preprocess_input(X)
     return W, X
 
@@ -106,16 +106,16 @@ def get_resnet_model(save_path, model_res=1024, image_size=256, depth=2, size=0,
     model_scale = int(2*(math.log(model_res,2)-1)) # For example, 1024 -> 18
 
     if size <= 0:
-        from keras.applications.resnet50 import ResNet50
+        from tensorflow.keras.applications.resnet50 import ResNet50
         resnet = ResNet50(include_top=False, pooling=None, weights='imagenet', input_shape=(image_size, image_size, 3))
     else:
-        from keras_applications.resnet_v2 import ResNet50V2, ResNet101V2, ResNet152V2
+        from tensorflow.keras_applications.resnet_v2 import ResNet50V2, ResNet101V2, ResNet152V2
     if size == 1:
-        resnet = ResNet50V2(include_top=False, pooling=None, weights='imagenet', input_shape=(image_size, image_size, 3), backend = keras.backend, layers = keras.layers, models = keras.models, utils = keras.utils)
+        resnet = ResNet50V2(include_top=False, pooling=None, weights='imagenet', input_shape=(image_size, image_size, 3), backend = tensorflow.keras.backend, layers = tensorflow.keras.layers, models = tensorflow.keras.models, utils = tensorflow.keras.utils)
     if size == 2:
-        resnet = ResNet101V2(include_top=False, pooling=None, weights='imagenet', input_shape=(image_size, image_size, 3), backend = keras.backend, layers = keras.layers, models = keras.models, utils = keras.utils)
+        resnet = ResNet101V2(include_top=False, pooling=None, weights='imagenet', input_shape=(image_size, image_size, 3), backend = tensorflow.keras.backend, layers = tensorflow.keras.layers, models = tensorflow.keras.models, utils = tensorflow.keras.utils)
     if size >= 3:
-        resnet = ResNet152V2(include_top=False, pooling=None, weights='imagenet', input_shape=(image_size, image_size, 3), backend = keras.backend, layers = keras.layers, models = keras.models, utils = keras.utils)
+        resnet = ResNet152V2(include_top=False, pooling=None, weights='imagenet', input_shape=(image_size, image_size, 3), backend = tensorflow.keras.backend, layers = tensorflow.keras.layers, models = tensorflow.keras.models, utils = tensorflow.keras.utils)
 
     layer_size = model_scale*8*8*8
     if is_square(layer_size): # work out layer dimensions

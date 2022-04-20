@@ -15,7 +15,7 @@ From left to right: original image, predicted image from a ResNet trained on gen
 What I've added:
 
 1) The ResNet encoder - train your own with *train_resnet.py* or [download my pre-trained model](https://drive.google.com/open?id=1aT59NFy9-bNyXjDuZOTMl0qX0jmZc6Zb)! Put the model in data/finetuned_resnet.h5
-2) Drop-in replacement to use an EfficientNet based encoder with *train_effnet.py* - thanks to @qubvel for [his Keras implementation of EfficientNets](https://github.com/qubvel/efficientnet/)! Install from source to get the latest version.
+2) Drop-in replacement to use an EfficientNet based encoder with *train_effnet.py* - thanks to @qubvel for [his tensorflow.keras implementation of EfficientNets](https://github.com/qubvel/efficientnet/)! Install from source to get the latest version.
 3) More loss functions for the iterative encoder to improve convergence speed and face quality.
  * Original VGG loss is still present.
  * Added image loss using logcosh.
